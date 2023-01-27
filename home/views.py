@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-#from userprofile.models import List
+from mylistapp import models
 #from django.utils.decorators import method_decorator
 #from django.contrib.auth.decorators import login_required
 
@@ -71,7 +71,7 @@ class MovieView(TemplateView):
     def post(self, request, *args, **kwargs):
         user = request.user
         movie = request.POST.get('movie_id')
-        form = List(user=user, movie=movie)
+        form = models.MyList(user=user, movie=movie)
         form.save()
         messages.success(request, 'Movie successfully added to your list.')
         return redirect('home')

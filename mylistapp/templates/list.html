@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
 
-    <h1>TJIIOJWTWJJWJ89TJW</h1>
+    <div class="container">
+        <h1>{{ user }}</h1>
+        <div class="movies">
+        </div>
+    </div>
 {% endblock content %}

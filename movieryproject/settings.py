@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'movieryproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'moviesprojectdb',
+        'NAME': 'movierydb',
         'USER': 'elifusion',
         'PASSWORD': '1234',
         'HOST': 'localhost',
