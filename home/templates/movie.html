@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/movie.css' %}">
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <main>
+        <section class="movie-details">
+            {% if movie.poster_path == null %}
+                    <img src="{% static 'images/noimage.png' %}" alt="No image" height="300px">
+                {% else %}
+                    <img src="https://image.tmdb.org/t/p/w185/{{ movie.poster_path }}" alt="{{ movie.title }}">
+                {% endif %}
+            <div class="infos">
+                <h1>{{ movie.original_title }} ({{ movie.release_date }})</h1>
+                <h3>{{ movie.production_companies.0.name }}</h3>
+                 <p><strong>Rating: </strong>{{ movie.vote_average|floatformat:1 }}/10</p>
+                <p><strong>Genres:</strong> 
+                    {% for genre in movie.genres %}
+                    <a href="#">{{ genre.name }} |</a>
+                {% endfor %}
+                
+                </p>
+                <p><strong>Overview:</strong> {{ movie.overview }}</p>
+                <p><strong>Status:</strong> {{ movie.status }}</p>
+                {% if user.is_authenticated %}
+                    <form action="{{ movie.id }}" method="post">{% csrf_token %}
+                        {% if messages %}
+                            {% for m in messages %}
+                                <p>{{ m }}</p>
+                            {% endfor %}
+                        {% endif %}
+                        <input type="hidden" name="movie_id" id="movie_id" value="{{ movie.id }}">
+                        <button id="add_list" type="submit">+ Add to my list</button>
+                    </form>
+                {% endif %}
+            </div>
+        </section>
+        <h1 id="title">Recommended Movies</h1>
+        <section id="recommendation" class="movie-details">
+            <div class="cards">
+                {% for r_movie in recommended %}
+                <a href="{% url 'movie' r_movie.id %}">
+                    <div class="card">
+                        <img src="https://image.tmdb.org/t/p/w185/{{ r_movie.poster_path }}" alt="{{ d.title }}">
+                        <div class="movie-infos">
+                            <p class="movie-title">{{ r_movie.original_title }}</p>
+                            <div class="extra-infos">
+                                <p class="vote_average">{{ r_movie.vote_average|floatformat:1 }}</p>
+                                <p>{{ r_movie.release_date }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>    
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock content %}

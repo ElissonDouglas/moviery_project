@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+    <div class="search-bar">
+        <form method="post" action="{% url 'search' %}"> {%     csrf_token %}
+            <input type="text" name="searchbar" id="searchbar" placeholder="Search for a title">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <div class="container">
+    {% if results == 0 %}
+        <h1>No results for this title :(</h1>
+    {% else  %}
+    {% for r in results %}
+    <a href="{% url 'movie' r.id %}">
+        <div class="card">
+            {% if r.poster_path == null %}
+                <img src="{% static 'images/noimage.png' %}" alt="No image">
+            {% else %}
+                <img src="https://image.tmdb.org/t/p/w185/{{ r.poster_path }}" alt="{{ r.title }}">
+            {% endif %}
+
+            <div class="movie-infos">
+                <p class="movie-title">{{ r.title }}</p>
+                <div class="extra-infos">
+                    <p class="vote_average">{{ r.vote_average|floatformat:1 }}</p>
+                    <p>{{ r.release_date }}</p>
+                </div>
+            </div>
+        </div>
+    </a>
+{% endfor %}
+    {% endif %}
+    </div>
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock content %}

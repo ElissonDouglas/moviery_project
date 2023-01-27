@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <main>
+        <section id="popular">
+            <h1 id="movies-area">Popular Movies</h1>
+            <div class="movies-area">
+                <!--Movie item starts-->
+                {% for d in popular_movies %}
+                <a href="{% url 'movie' d.id %}">
+                    <div class="card">
+                        <img src="https://image.tmdb.org/t/p/w185/{{ d.poster_path }}" alt="{{ d.title }}">
+                        <div class="movie-infos">
+                            <p class="movie-title">{{ d.title }}</p>
+                            <div class="extra-infos">
+                                <p class="vote_average">{{ d.vote_average|floatformat:1 }}</p>
+                                <p>{{ d.release_date }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+                <!--Movie item ends-->
+
+               
+                
+            </div>
+        </section>
+
+        <section id="top-rated">
+            <h1 id="movies-area">Top Rated</h1>
+            <div class="movies-area">
+                <!--Movie item starts-->
+                {% for d in top_rated_movies %}
+                <a href="{% url 'movie' d.id %}">
+                    <div class="card">
+                        <img src="https://image.tmdb.org/t/p/w185/{{ d.poster_path }}" alt="{{ d.title }}">
+                        <div class="movie-infos">
+                            <p class="movie-title">{{ d.original_title }}</p>
+                            <div class="extra-infos">
+                                <p class="vote_average">{{ d.vote_average|floatformat:1 }}</p>
+                                <p>{{ d.release_date }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+                <!--Movie item ends-->
+
+               
+                
+            </div>
+        </section>
+
+        <section id="genres">
+            <h1 id="movies-area">
+                Search by genre
+            </h1>
+            <div class="movies-area">
+                <select name="movie-genres" id="movie-genres">
+                    <option value="action">Action</option>
+                    <option value="animation">Animation</option>
+                    <option value="adventure">Adventure</option>
+                </select>
+            </div>
+        </section>
+    </main>
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock content %}

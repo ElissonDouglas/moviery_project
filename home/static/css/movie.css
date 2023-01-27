@@ -1,0 +1,61 @@
+.movie-details {
+    margin: 30px;
+    color: white;
+    display: flex;
+    gap: 3em;
+}
+
+
+.movie-details img {
+    width: 300px;
+    border-radius: 15px;
+}
+
+.infos {
+    width: 30%;
+    font-size: 1em;
+}
+
+.infos p {
+    margin-top: 20px;
+}
+
+.infos a {
+    color: white;
+}
+
+h1#title {
+    color: white;
+    margin: 0 auto;
+    width: 341px;
+}
+
+.movie-details .cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: space-around;
+}
+
+button#add_list {
+    cursor: pointer;
+    margin-top: 15px;
+    background-color: rgb(30, 255, 0);
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+
+
+@media screen and (max-width: 730px) {
+    .movie-details {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .infos {
+        width: 100%;
+        text-align: justify;
+    }
+}

@@ -1,0 +1,211 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #1a0a3b;
+}
+
+/* HEADER STARTS*/
+header {
+    background-color: #2a0b66;
+    padding: 10px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header a {
+    color: rgb(177, 176, 176);
+    text-decoration: none;
+}
+
+
+.nav-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-items {
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-items ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+.nav-item {
+    margin: 0 15px;
+}
+
+
+.logo-site img {
+    width: 60px;
+    cursor: pointer;
+}
+
+ul#nav {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+a#sign-in {
+    background-color: white;
+    color: black;
+    padding: 5px;
+    border-radius: 6px;
+    border: 2px solid white;
+}
+
+a#sign-in:hover {
+    background-color: transparent;
+    color: white;
+}
+
+a#sign-up {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 5px;
+    border-radius: 6px;
+}
+
+a#sign-up:hover {
+    background-color: white;
+    color: black;
+}
+
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    color: white;
+    font-style: normal;
+    font-size: 30px;
+    transition: .3s;
+}
+
+.login-search { 
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 2em;
+}
+
+.sign-in-out-button {
+    color: black;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    transition: .3s ease;
+}
+
+.login-search > .sign-in-out-button > a {
+    color: black;
+}
+
+.sign-in-out-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px black;
+    transition: .3s ease;
+}
+
+.login-search button#logout-button a {
+    color: white;
+    font-weight: bold;
+}
+
+.login-search button#logout-button {
+    border: none;
+    padding: 5px;
+    background-color: red;
+}
+
+.mobile-menu-icon {
+    display: none;
+}
+
+.mobile-menu {
+    display: none;
+}
+
+
+/* HEADER ENDS*/
+
+/* FOOTER STARTS */
+footer {
+    width: 100%;
+    margin-top: 150px;
+    height: 200px;
+    padding: 15px;
+    color: rgb(185, 185, 185);
+    background-color: #2a0b66;
+    display: flex;
+    justify-content: space-around;
+    clear: both;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+
+/* FOOTER ENDS */
+
+/* MEDIA SCREENS */
+
+@media screen and (max-width: 730px) {
+    
+    header {
+        flex-direction: column;
+    }
+
+    .nav-item {
+        display: none;
+    }
+
+    .mobile-menu-icon {
+        display: block;
+    }
+
+    .mobile-menu-icon button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    .mobile-menu ul {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding-bottom: 1rem;
+    }
+
+    .mobile-menu .nav-item {
+        display: block;
+        padding-top: 1.2rem;
+    }
+
+    .open {
+        display: block;
+        width: 500px;
+    }
+
+    footer {
+        font-size: 0.8em;
+        flex-direction: column;
+    }
+}

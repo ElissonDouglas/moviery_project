@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/R.png' %}" type="image/png">
+    
+
+    <!--Google Icons-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,600,1,0" />
+</head>
+<body>
+    <header>
+        <nav class="nav-bar">
+            <div class="logo-site">
+                <a href="{% url 'home' %}"><img src="{% static 'images/R.png' %}" alt="icone"></a>
+            </div>
+            <div class="nav-items">
+                <ul id="nav">
+                    <li class="nav-item"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a href="#">About</a></li>
+                    <li class="nav-item"><a href="{% url 'search' %}">Search</a></li>
+                    {% if user.is_anonymous %}
+                    <li class="nav-item"><a href="{% url 'login' %}" id="sign-in">Sign-in</a></li>
+                    <li class="nav-item"><a href="{% url 'register' %}" id="sign-up">Sign-up</a></li>
+                    {% else %}
+                    <li class="nav-item"><a href="{% url 'mylist' %}">Olá, {{ user.first_name }}</a></li>
+                    <li class="nav-item"><button id="logout-button"><a href="{% url 'logout' %}">Logout</a></button></li>
+                    {% endif %}
+                </ul>
+            </div>
+                <div class="mobile-menu-icon">
+                    <button onclick="menuShow()"><img src="{% static 'images/menu_white_36dp.svg' %}" alt="" class="icon"></button>
+                </div>
+        </nav>
+        <div class="mobile-menu">
+            <ul id="nav">
+                <li class="nav-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a href="#">About</a></li>
+                <li class="nav-item"><a href="{% url 'search' %}">Search</a></li>
+                {% if user.is_anonymous %}
+                <li class="nav-item"><a href="{% url 'login' %}" id="sign-in">Sign-in</a></li>
+                <li class="nav-item"><a href="{% url 'register' %}" id="sign-up">Sign-up</a></li>
+                
+                {% else %}
+                    <li class="nav-item"><a href="#">Olá, {{ user.first_name }}</a></li>
+                    <li><a href="#">My list</a></li>
+                    <li class="nav-item"><button id="logout-button"><a href="{% url 'logout' %}">Logout</a></button></li>
+                {% endif %}
+            </ul>
+            
+        </div>
+
+    </header>
+    {% block content %} {% endblock content %}
+
+    <footer>
+
+        <div class="credits">
+            <img src="{% static 'images/tmdb.svg' %}" alt="The Movie Database">
+            <p>This product uses the TMDB API but is not endorsed or certified by <a href="https://www.themoviedb.org/" target="_blank">TMDB</a>.</p>
+        </div>
+        <div class="infos">
+            <h2>Informations</h2>
+            <p><a href="https://github.com/ElissonDouglas" target="_blank" >GitHub</a></p>
+            <p><a href="https://www.themoviedb.org/" target="_blank">The Movie Database</a></p>
+            <p>
+                This Website was developed for the purpose of studying only
+            </p>
+        </div>
+        
+        
+    </footer>
+<script src="{% static 'js/base.js' %}"></script>
+</body>
+</html>
