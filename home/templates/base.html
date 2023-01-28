@@ -29,13 +29,7 @@
                     <li class="nav-item"><a href="{% url 'login' %}" id="sign-in">Sign-in</a></li>
                     <li class="nav-item"><a href="{% url 'register' %}" id="sign-up">Sign-up</a></li>
                     {% else %}
-                    <li class="nav-item">
-                        <form action="{% url 'mylist' %}" method="post">
-                            {% csrf_token %}
-                            <input type="hidden" name="username" id="username" value="{{ user }}">
-                            <button type="submit" id="profile-button">My profile</button>
-                        </form>
-                    </li>
+                    <li class="nav-item"><a href="{% url 'mylist' %}">My list</a></li>
                     <li class="nav-item"><button id="logout-button"><a href="{% url 'logout' %}">Logout</a></button></li>
                     {% endif %}
                 </ul>

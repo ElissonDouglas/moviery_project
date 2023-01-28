@@ -46,6 +46,14 @@ button#add_list {
     padding: 10px;
 }
 
+.added {
+    width: 14rem;
+    background-color: greenyellow;
+    color: black;
+    padding: 5px;
+    border-radius: 6px;
+}
+
 
 
 @media screen and (max-width: 730px) {

@@ -11,6 +11,7 @@
                     <img src="https://image.tmdb.org/t/p/w185/{{ movie.poster_path }}" alt="{{ movie.title }}">
                 {% endif %}
             <div class="infos">
+                <input type="hidden" name="movie_id" value="{{ movie.id }}">
                 <h1>{{ movie.original_title }} ({{ movie.release_date }})</h1>
                 <h3>{{ movie.production_companies.0.name }}</h3>
                  <p><strong>Rating: </strong>{{ movie.vote_average|floatformat:1 }}/10</p>
@@ -23,10 +24,15 @@
                 <p><strong>Overview:</strong> {{ movie.overview }}</p>
                 <p><strong>Status:</strong> {{ movie.status }}</p>
                 {% if user.is_authenticated %}
-                    <form action="{{ movie.id }}" method="post">{% csrf_token %}
+                    {% if is_in_list %}
+                        <p class="added">&#x2705; Movie added to your list.</p>
+                    {% else %}
+                      <form action="{{ movie.id }}" method="post">{% csrf_token %}
                         <input type="hidden" name="movie_id" id="movie_id" value="{{ movie.id }}">
                         <button id="add_list" type="submit">+ Add to my list</button>
                     </form>
+                    {% endif %}
+                    
                 {% endif %}
             </div>
         </section>

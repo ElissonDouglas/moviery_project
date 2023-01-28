@@ -3,9 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from mylistapp import models
-#from django.utils.decorators import method_decorator
-#from django.contrib.auth.decorators import login_required
+from mylistapp.models import MyList
+
 
 import requests
 from datetime import datetime
@@ -59,26 +58,29 @@ class MovieView(TemplateView):
     template_name = 'movie.html'
    
 
-    def get(self, request, movie_id):
+    def get_context_data(self, movie_id, **kwargs):
         movie_data = get_movie_data_by_id(movie_id)
         recommended_movie = get_recommended_movie_by_id(movie_id)
+        
+        is_in_list = MyList.objects.filter(movie=movie_id, user_id=self.request.user.id).exists()
+        
+        
         context = {
             'movie': movie_data,
-            'recommended': recommended_movie       
+            'recommended': recommended_movie,
+            'is_in_list': is_in_list,      
             }
-        return render(request, self.template_name, context)
-    
-    
-    
-
+        return context
+ 
+ 
     def post(self, request, *args, **kwargs):
         user = request.user
         movie = request.POST.get('movie_id')
-        if models.MyList.objects.filter(user=user, movie=movie).exists():
+        if MyList.objects.filter(user=user, movie=movie).exists():
             messages.error(request, 'Movie is already added to your list')
             return render(request, 'list.html', {})
         else:
-            form = models.MyList(user=user, movie=movie)
+            form = MyList(user=user, movie=movie)
             form.save()
             messages.success(request, 'Movie successfully added to your list.')
             return redirect('home')
@@ -113,7 +115,6 @@ class RegisterView(TemplateView):
             return redirect('login')
 
 
-#@method_decorator(login_required, name='dispatch')
 class LoginView(TemplateView):
     template_name = 'login.html'
     

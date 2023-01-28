@@ -17,10 +17,9 @@ MY_API_KEY = '7c5b4f0aacc314306fd23c1b4c621810'
 class MyListView(TemplateView):
     template_name = 'list.html'
     
-    def post(self, request, *args, **kwargs):
-        user = User.objects.get(username=request.POST.get('username'))
-        movies = MyList.objects.all().filter(user_id=user.id)
-        
+    
+    def get(self, request, *args, **kwargs):
+        movies = MyList.objects.filter(user_id=request.user.id).order_by('-id')
         all_movies = []
         
         for movie in movies:
@@ -31,4 +30,5 @@ class MyListView(TemplateView):
             'movies': all_movies,
         }
         
-        return render(request, self.template_name, context)
+        return render(request, 'list.html', context)
+    
