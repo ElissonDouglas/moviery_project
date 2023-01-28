@@ -140,4 +140,6 @@ def logout_user(request):
     return redirect('home')
     
 
+class AboutView(TemplateView):
+    template_name = 'about.html'
     

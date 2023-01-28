@@ -170,12 +170,12 @@ button#logout-button a{
 footer {
     width: 100%;
     margin-top: 150px;
-    height: 200px;
     padding: 15px;
     color: rgb(185, 185, 185);
     background-color: #2a0b66;
     display: flex;
     justify-content: space-around;
+    gap: 2em;
     clear: both;
 }
 
@@ -191,6 +191,10 @@ footer a {
 
 @media screen and (max-width: 730px) {
     
+    body {
+        overflow-x: hidden;
+    }
+
     header {
         flex-direction: column;
     }

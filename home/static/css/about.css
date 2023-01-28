@@ -1,0 +1,30 @@
+* {
+    color: white;
+    text-align: center;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+p {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: justify;
+}
+
+a {
+    text-decoration: none;
+}
+
+a > i {
+    margin-top: 2rem;
+    font-size: 1em;
+    word-spacing: 0.5em;
+}
+
+a > img {
+    width: 50px;
+}

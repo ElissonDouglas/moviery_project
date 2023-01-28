@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from .models import MyList
-from django.contrib.auth.models import User
+
 
 import requests
 from home.views import get_movie_data_by_id
@@ -31,4 +31,3 @@ class MyListView(TemplateView):
         }
         
         return render(request, 'list.html', context)
-    

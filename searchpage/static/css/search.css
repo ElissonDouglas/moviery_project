@@ -43,7 +43,7 @@ h1 {
     }
 
     .card {
-        width: 100px;
+        width: 130px;
         height: 250px;
     }
 
@@ -53,7 +53,7 @@ h1 {
 
     .card .movie-infos {
         font-size: 0.65em;
-        width: 100px;
+        width: 130px;
     }
 
     .container {

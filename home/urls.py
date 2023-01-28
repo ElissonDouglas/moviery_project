@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import HomeView, MovieView, Erro404View, RegisterView, LoginView, logout_user
+from .views import HomeView, MovieView, Erro404View, RegisterView, LoginView, logout_user, AboutView
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
@@ -9,4 +9,5 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', logout_user, name='logout'),
+    path('about/', AboutView.as_view(), name='about'),
 ]

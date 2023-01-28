@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movies</title>
+    <title>Moviery</title>
     <link rel="stylesheet" href="../static/css/base.css">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="shortcut icon" href="{% static 'images/R.png' %}" type="image/png">
@@ -23,8 +23,8 @@
             <div class="nav-items">
                 <ul id="nav">
                     <li class="nav-item"><a href="{% url 'home' %}">Home</a></li>
-                    <li class="nav-item"><a href="#">About</a></li>
                     <li class="nav-item"><a href="{% url 'search' %}">Search</a></li>
+                    <li class="nav-item"><a href="{% url 'about' %}">About</a></li>
                     {% if user.is_anonymous %}
                     <li class="nav-item"><a href="{% url 'login' %}" id="sign-in">Sign-in</a></li>
                     <li class="nav-item"><a href="{% url 'register' %}" id="sign-up">Sign-up</a></li>
@@ -42,15 +42,14 @@
         <div class="mobile-menu">
             <ul id="nav">
                 <li class="nav-item"><a href="{% url 'home' %}">Home</a></li>
-                <li class="nav-item"><a href="#">About</a></li>
                 <li class="nav-item"><a href="{% url 'search' %}">Search</a></li>
+                <li class="nav-item"><a href="{% url 'about' %}">About</a></li>
                 {% if user.is_anonymous %}
                 <li class="nav-item"><a href="{% url 'login' %}" id="sign-in">Sign-in</a></li>
                 <li class="nav-item"><a href="{% url 'register' %}" id="sign-up">Sign-up</a></li>
                 
                 {% else %}
-                    <li class="nav-item"><a href="#">Hi, {{ user.first_name }}</a></li>
-                    <li><a href="#">My list</a></li>
+                    <li><a href="{% url 'mylist' %}">My list</a></li>
                     <li class="nav-item"><button id="logout-button"><a href="{% url 'logout' %}">Logout</a></button></li>
                 {% endif %}
             </ul>

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <h1>About</h1>
+    <p>Welcome to our movie search and save website! Here, you can easily search for your favorite films and save them to your own personal list. Our site utilizes the powerful The Movie Db API to provide you with accurate and up-to-date information on all the latest films. Built using the Django Framework, our website is designed to be fast, reliable, and user-friendly. Start browsing now and find your next favorite film!</p>
+
+    <a href="https://github.com/ElissonDouglas/moviery_project" target="_blank"><i class="fa-brands fa-github"></i> My Github repository</a>
+
+    <a href="https://www.themoviedb.org/"><img src="{% static 'images/tmdb2.svg' %}" alt="The Movie Database Logo"> The Movie Database</a>
+{% endblock content %}
