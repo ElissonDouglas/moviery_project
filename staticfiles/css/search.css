@@ -1,0 +1,65 @@
+.search-bar {
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+}
+
+input#searchbar {
+    border: 1px solid black;
+    border-radius: 6px;
+    background-color: rgba(85, 85, 85, 0.548);
+    max-width: 400px;
+    padding: 15px;
+    font-size: 1.5em;
+    color: white;
+}
+
+button[type='submit'] {
+    cursor: pointer;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    justify-content: center;
+}
+
+
+
+h1 {
+    color: white;
+}
+
+@media screen and (max-width: 730px) {
+
+    input#searchbar {
+        width: 240px;
+        font-size: 1em;
+    }
+
+    .card {
+        width: 100px;
+        height: 250px;
+    }
+
+    .card img {
+        width: 100%;
+    }
+
+    .card .movie-infos {
+        font-size: 0.65em;
+        width: 100px;
+    }
+
+    .container {
+        gap: 1em;
+        padding: 5px;
+    }
+
+    
+}
