@@ -24,11 +24,6 @@
                 <p><strong>Status:</strong> {{ movie.status }}</p>
                 {% if user.is_authenticated %}
                     <form action="{{ movie.id }}" method="post">{% csrf_token %}
-                        {% if messages %}
-                            {% for m in messages %}
-                                <p>{{ m }}</p>
-                            {% endfor %}
-                        {% endif %}
                         <input type="hidden" name="movie_id" id="movie_id" value="{{ movie.id }}">
                         <button id="add_list" type="submit">+ Add to my list</button>
                     </form>

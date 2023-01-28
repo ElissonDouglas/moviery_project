@@ -1,11 +1,27 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/mylist.css' %}">
 
     <div class="container">
-        <h1>{{ user }}</h1>
-        <div class="movies">
+        <h1>My list</h1>
+        <div class="cards">
+            {% for m in movies %}
+            <a href="{% url 'movie' m.id %}">
+                <div class="card">
+                    <img src="https://image.tmdb.org/t/p/w185/{{ m.poster_path }}" alt="{{ d.title }}">
+                    <div class="movie-infos">
+                        <p class="movie-title">{{ m.original_title }}</p>
+                        <div class="extra-infos">
+                            <p class="vote_average">{{ m.vote_average|floatformat:1 }}</p>
+                            <p>{{ m.release_date }}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>    
+            {% endfor %}
         </div>
     </div>
+<script src="{% static 'js/main.js' %}"></script>
 {% endblock content %}

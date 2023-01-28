@@ -1,0 +1,13 @@
+
+
+h1 {
+    color: white;
+    text-align: center;
+}
+
+.cards {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 1.5em;
+}

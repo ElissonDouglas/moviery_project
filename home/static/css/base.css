@@ -60,6 +60,7 @@ ul#nav {
     display: flex;
     gap: 20px;
     list-style: none;
+    align-items: center;
 }
 
 a#sign-in {
@@ -139,6 +140,27 @@ a#sign-up:hover {
 
 .mobile-menu {
     display: none;
+}
+
+
+
+
+button#profile-button {
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+button#logout-button {
+    background-color: red;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+}
+
+button#logout-button a{
+    text-decoration: none;
+    color: white;
 }
 
 

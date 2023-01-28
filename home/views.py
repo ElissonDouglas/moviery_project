@@ -57,7 +57,7 @@ class HomeView(TemplateView):
 
 class MovieView(TemplateView):
     template_name = 'movie.html'
-    
+   
 
     def get(self, request, movie_id):
         movie_data = get_movie_data_by_id(movie_id)
@@ -67,14 +67,21 @@ class MovieView(TemplateView):
             'recommended': recommended_movie       
             }
         return render(request, self.template_name, context)
+    
+    
+    
 
     def post(self, request, *args, **kwargs):
         user = request.user
         movie = request.POST.get('movie_id')
-        form = models.MyList(user=user, movie=movie)
-        form.save()
-        messages.success(request, 'Movie successfully added to your list.')
-        return redirect('home')
+        if models.MyList.objects.filter(user=user, movie=movie).exists():
+            messages.error(request, 'Movie is already added to your list')
+            return render(request, 'list.html', {})
+        else:
+            form = models.MyList(user=user, movie=movie)
+            form.save()
+            messages.success(request, 'Movie successfully added to your list.')
+            return redirect('home')
     
     
 
