@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from .models import MyList
 
@@ -24,6 +24,10 @@ class MyListView(TemplateView):
         
         for movie in movies:
             aux = get_movie_data_by_id(movie.movie)
+            if movie.watched:
+                aux['watched'] = True
+            else: 
+                aux['watched'] = False
             all_movies.append(aux)
         
         context = {
@@ -31,3 +35,16 @@ class MyListView(TemplateView):
         }
         
         return render(request, 'list.html', context)
+  
+  
+def updateitem(request, pk):
+    movie = MyList.objects.get(movie=pk, user_id=request.user.id)
+    movie.watched = True
+    movie.save()
+    return redirect('mylist')
+  
+    
+def deleteitem(request, pk):
+    movie = MyList.objects.get(movie=pk, user_id=request.user.id)
+    movie.delete()
+    return redirect('mylist')

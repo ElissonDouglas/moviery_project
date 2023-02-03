@@ -83,7 +83,7 @@ class MovieView(TemplateView):
             form = MyList(user=user, movie=movie)
             form.save()
             messages.success(request, 'Movie successfully added to your list.')
-            return redirect('home')
+            return redirect('mylist')
     
     
 

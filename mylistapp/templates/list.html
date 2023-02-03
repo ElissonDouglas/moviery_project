@@ -9,23 +9,56 @@
     <div class="container">
         <h1>My list</h1>
         <div class="cards">
+            {% if movies|length == 0  %}
+                <h1>Your list is empty. Add some movies! :D</h1>
+            {% endif %}
+
             {% for m in movies %}
-            <a href="{% url 'movie' m.id %}">
+            <!--<a href="{% url 'movie' m.id %}">-->
+                
                 <div class="card">
-                    <img src="https://image.tmdb.org/t/p/w185/{{ m.poster_path }}" alt="{{ d.title }}">
+                    <button class="delete-item" onclick="deleteItem({{ m.id }})">
+                        <span class="material-symbols-outlined" >
+                            delete</span>
+                    </button>
+
+                    <button class="watched-button" onclick="markWatched({{ m.id }})">
+                        <span class="material-symbols-outlined" {% if m.watched %}
+                            id="watched"
+                        {% endif %}>
+                            done
+                            </span>
+                    </button>
+                        
+                <a href="{% url 'movie' m.id %}">
+                    <img src="https://image.tmdb.org/t/p/w185/{{ m.poster_path }}" alt="{{ m.title }}">
                     <div class="movie-infos">
                         <p class="movie-title">{{ m.original_title }}</p>
                         <div class="extra-infos">
                             <p class="vote_average">{{ m.vote_average|floatformat:1 }}</p>
                             <p>{{ m.release_date }}</p>
+                            
                         </div>
                     </div>
                 </div>
-            </a>    
+                </a>    
             {% endfor %}
         </div>
     </div>
     {% endif %}
     
 <script src="{% static 'js/main.js' %}"></script>
+<script>
+    function deleteItem(id) {
+        window.location.href = '/deleteitem/' + id;
+    }
+
+    function markWatched(id) {
+        window.location.href = '/updateitem/' + id;
+    }
+
+    function redirectMovie(id) {
+        window.location.href = '/movie/' + id;
+    }
+</script>
 {% endblock content %}

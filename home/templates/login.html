@@ -8,16 +8,8 @@
         {% if user.is_anonymous %}
         <h1>Sign-in</h1>
         <hr>
-        <form method="post" action="." autocomplete="off">
+        <form method="post" action="{% url 'login' %}" autocomplete="off">
             {% csrf_token %}
-            {% if messages %}
-                {% for m in messages %}
-                <div class="message-error" role="alert">
-                    {{ m }}
-                </div>
-                {% endfor %}
-            {% endif %}
-            
             <div class="fields">
                 <label for="username">Username</label>
                 <input type="text" name="username" id="username">
