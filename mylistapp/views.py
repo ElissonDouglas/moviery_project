@@ -48,3 +48,15 @@ def deleteitem(request, pk):
     movie = MyList.objects.get(movie=pk, user_id=request.user.id)
     movie.delete()
     return redirect('mylist')
+
+
+def additem(request, pk):
+    if request.method == 'POST':
+        user = request.user
+        movie = pk #request.POST.get('movie_id')
+        if not MyList.objects.filter(user=user, movie=movie).exists():
+            form = MyList(user=user, movie=movie)
+            form.save()
+            return redirect('mylist')
+        else:
+            return render(request, 'list.html')

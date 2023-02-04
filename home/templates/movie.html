@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <main>
         <section class="movie-details">
-            {% if movie.poster_path == null %}
+                {% if movie.poster_path == null %}
                     <img src="{% static 'images/noimage.png' %}" alt="No image" height="300px">
                 {% else %}
                     <img src="https://image.tmdb.org/t/p/w185/{{ movie.poster_path }}" alt="{{ movie.title }}">
@@ -27,7 +27,7 @@
                     {% if is_in_list %}
                         <p class="added">&#x2705; Movie added to your list.</p>
                     {% else %}
-                      <form action="{{ movie.id }}" method="post">{% csrf_token %}
+                      <form action="{% url 'additem' movie.id %}" method="post">{% csrf_token %}
                         <input type="hidden" name="movie_id" id="movie_id" value="{{ movie.id }}">
                         <button id="add_list" type="submit">+ Add to my list</button>
                     </form>

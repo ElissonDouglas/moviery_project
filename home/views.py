@@ -33,13 +33,6 @@ def get_recommended_movie_by_id(movie_id):
     return data['results']
 
 
-
-def baseview(request):
-    print(request.user)
-    return render(request, 'base.html', {'user': request.user}) 
-
-
-
 class HomeView(TemplateView):
     template_name = 'home.html'
     popular_movies_data = get_movies_data('popular')
@@ -73,17 +66,7 @@ class MovieView(TemplateView):
         return context
  
  
-    def post(self, request, *args, **kwargs):
-        user = request.user
-        movie = request.POST.get('movie_id')
-        if MyList.objects.filter(user=user, movie=movie).exists():
-            messages.error(request, 'Movie is already added to your list')
-            return render(request, 'list.html', {})
-        else:
-            form = MyList(user=user, movie=movie)
-            form.save()
-            messages.success(request, 'Movie successfully added to your list.')
-            return redirect('mylist')
+    
     
     
 
@@ -118,21 +101,21 @@ class RegisterView(TemplateView):
 class LoginView(TemplateView):
     template_name = 'login.html'
     
+    
+    
+    
+    
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {})
-    
-    
-    def post(self, request, *args, **kwargs):
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        username = request.GET.get('username')
+        password = request.GET.get('password')
 
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
             return redirect('home')
         else:
-            messages.error(request, 'Invalid username or password')
-            return render(request, self.template_name, {})
+            
+            return render(request, self.template_name, {'messages':messages.error(request, 'Invalid username or password')})
 
       
 def logout_user(request):
