@@ -7,6 +7,41 @@ h1 {
     text-align: center;
 }
 
+.card {
+    position: relative;
+}
+
+.delete-item {
+    position: absolute;
+    cursor: pointer;
+    border: none;
+    padding: 3px;
+    
+    background-color: red;
+    border-radius: 50%;
+}
+
+.watched-button {
+    background-color: transparent;
+    border-radius: 50%;
+    position: absolute;
+    right: 0px;
+    border: none;
+}
+
+.watched-button span {
+    border: 1px solid white;
+    border-radius: 50%;
+}
+
+.watched-button span:hover {
+    background-color: rgb(1, 211, 1);
+}
+
+.watched-button > span#watched {
+    background-color: rgb(1, 211, 1);
+}
+
 
 
 .container .cards {
@@ -17,4 +52,10 @@ h1 {
     justify-content: center;
     flex-wrap: wrap;
     gap: 1.5em;
+}
+
+@media screen and (max-width: 730px) {
+    .container .cards {
+        padding: 0;
+    }
 }
