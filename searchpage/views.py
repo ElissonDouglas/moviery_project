@@ -4,7 +4,7 @@ from django.shortcuts import render
 import requests
 
 # Create your views here.
-MY_API_KEY = '7c5b4f0aacc314306fd23c1b4c621810'
+MY_API_KEY = ''
 
 
 def search_movies(title):
